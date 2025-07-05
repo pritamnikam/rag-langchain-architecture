@@ -10,8 +10,11 @@ COPY requirements.txt ./
 # Install Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy the rest of the application code
+# Copy both example scripts into the container
 COPY "01-embeddings-tf-idf.py" ./
+COPY "02-openai-embedding.py" ./
 
-# Set the default command to run the script
-CMD ["python", "01-embeddings-tf-idf.py"]
+# No default command; specify which script to run via CMD or docker run
+# Example:
+#   docker run --rm rag-examples python 01-embeddings-tf-idf.py
+#   docker run --rm -e OPENAI_API_KEY=your-key rag-examples python 02-openai-embedding.py

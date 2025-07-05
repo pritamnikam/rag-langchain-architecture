@@ -4,6 +4,7 @@ This project demonstrates how to use the TF-IDF vectorization technique to conve
 
 ## Project Structure
 - `01-embeddings-tf-idf.py`: Main script that performs TF-IDF vectorization, displays the results in a DataFrame, and demonstrates basic retrieval using NearestNeighbors.
+- `02-openai-embedding.py`: Example using OpenAI's embedding API and NearestNeighbors for semantic search. Requires an OpenAI API key.
 - `requirements.txt`: Lists Python dependencies for the project.
 - `Dockerfile`: Enables running the app in a containerized environment.
 
@@ -18,19 +19,36 @@ This project demonstrates how to use the TF-IDF vectorization technique to conve
 pip install -r requirements.txt
 ```
 
-### Run the script
+### Run the TF-IDF example
 ```sh
 python "01-embeddings-tf-idf.py"
+```
+
+### Run the OpenAI Embedding example
+Set your OpenAI API key as an environment variable:
+```sh
+export OPENAI_API_KEY=your-key-here  # On Windows use: set OPENAI_API_KEY=your-key-here
+```
+Then run:
+```sh
+python "02-openai-embedding.py"
 ```
 
 ### Run with Docker
 Build the Docker image:
 ```sh
-docker build -t tfidf-app .
+docker build -t rag-examples .
 ```
-Run the container:
+
+#### Run the TF-IDF example in Docker
 ```sh
-docker run --rm tfidf-app
+docker run --rm rag-examples python 01-embeddings-tf-idf.py
+```
+
+#### Run the OpenAI Embedding example in Docker
+You must provide your OpenAI API key as an environment variable:
+```sh
+docker run --rm -e OPENAI_API_KEY=your-key-here rag-examples python 02-openai-embedding.py
 ```
 
 ## Features
