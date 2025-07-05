@@ -9,8 +9,9 @@ Both examples show how to build a simple vector database and perform document re
 ## Project Structure
 - `01-embeddings-tf-idf.py`: TF-IDF vectorization and retrieval demo (no API key needed).
 - `02-openai-embedding.py`: OpenAI Embedding API-based retrieval demo (requires OpenAI API key).
-- `requirements.txt`: Python dependencies for both examples.
-- `Dockerfile`: Containerizes both scripts for easy, reproducible runs.
+- `03-embeddings-langchain-chromadb.py`: LangChain + OpenAI Embeddings + ChromaDB vector store demo (requires OpenAI API key).
+- `requirements.txt`: Python dependencies for all examples.
+- `Dockerfile`: Containerizes all scripts for easy, reproducible runs.
 - `.gitignore`: Standard Python, Docker, and editor ignores.
 
 ## Getting Started
@@ -51,8 +52,18 @@ Then run:
 python 02-openai-embedding.py
 ```
 
+### Run the LangChain + ChromaDB Example (Local)
+Set your OpenAI API key as an environment variable:
+```sh
+export OPENAI_API_KEY=your-key-here  # or set on Windows
+```
+Then run:
+```sh
+python 03-embeddings-langchain-chromadb.py
+```
+
 ### Run with Docker
-Build the Docker image (includes both scripts):
+Build the Docker image (includes all scripts):
 ```sh
 docker build -t rag-examples .
 ```
@@ -63,18 +74,23 @@ docker run --rm rag-examples python 01-embeddings-tf-idf.py
 ```
 
 #### Run the OpenAI Embedding example in Docker
-You must provide your OpenAI API key as an environment variable:
 ```sh
 docker run --rm -e OPENAI_API_KEY=your-key-here rag-examples python 02-openai-embedding.py
+```
+
+#### Run the LangChain + ChromaDB example in Docker
+```sh
+docker run --rm -e OPENAI_API_KEY=your-key-here rag-examples python 03-embeddings-langchain-chromadb.py
 ```
 
 **Note:** If you see an `insufficient_quota` or `invalid_api_key` error, check your OpenAI account status and quota.
 
 ## Features
 - Converts a set of documents into TF-IDF or OpenAI embeddings
-- Builds a simple vector database (index) using `NearestNeighbors` from scikit-learn
+- Builds a simple vector database (index) using `NearestNeighbors` from scikit-learn or ChromaDB
 - Demonstrates retrieval: Given a query, finds and displays the most similar document
 - Shows how to use both local and API-powered embeddings for RAG
+- Demonstrates modern RAG workflow with LangChain and ChromaDB
 
 ## Example Output
 ### TF-IDF Example
@@ -103,6 +119,15 @@ This is how it looks after going through an embedding model:
 [[...]]
 Query: What is JS?
 Retrieved document: JavaScript is a good programming language :)
+```
+
+### LangChain + ChromaDB Example
+```
+Generated 5 embeddings. Each vector size: 1536
+Chroma vector store created with 5 documents.
+
+Query: Which course is about RAG?
+Top retrieved document: ['This is the Fundamentals of RAG course.']
 ```
 
 ## Troubleshooting
