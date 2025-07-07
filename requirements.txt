@@ -3,6 +3,7 @@ pandas
 numpy
 openai
 langchain
+langchain-core
 langchain-openai
 langchain-community
 chromadb

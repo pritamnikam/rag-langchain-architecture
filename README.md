@@ -10,6 +10,7 @@ Both examples show how to build a simple vector database and perform document re
 - `01-embeddings-tf-idf.py`: TF-IDF vectorization and retrieval demo (no API key needed).
 - `02-openai-embedding.py`: OpenAI Embedding API-based retrieval demo (requires OpenAI API key).
 - `03-embeddings-langchain-chromadb.py`: LangChain + OpenAI Embeddings + ChromaDB vector store demo (requires OpenAI API key).
+- `04-langchain-augmented-query.py`: LangChain prompt augmentation demo (shows how to build a RAG prompt and augment a query; no API key needed).
 - `requirements.txt`: Python dependencies for all examples.
 - `Dockerfile`: Containerizes all scripts for easy, reproducible runs.
 - `.gitignore`: Standard Python, Docker, and editor ignores.
@@ -83,6 +84,11 @@ docker run --rm -e OPENAI_API_KEY=your-key-here rag-examples python 02-openai-em
 docker run --rm -e OPENAI_API_KEY=your-key-here rag-examples python 03-embeddings-langchain-chromadb.py
 ```
 
+#### Run the LangChain Augmented Query example in Docker
+```sh
+docker run --rm rag-examples python 04-langchain-augmented-query.py
+```
+
 **Note:** If you see an `insufficient_quota` or `invalid_api_key` error, check your OpenAI account status and quota.
 
 ## Features
@@ -91,6 +97,7 @@ docker run --rm -e OPENAI_API_KEY=your-key-here rag-examples python 03-embedding
 - Demonstrates retrieval: Given a query, finds and displays the most similar document
 - Shows how to use both local and API-powered embeddings for RAG
 - Demonstrates modern RAG workflow with LangChain and ChromaDB
+- Shows how to build and format a RAG prompt for LLMs using LangChain
 
 ## Example Output
 ### TF-IDF Example
@@ -128,6 +135,28 @@ Chroma vector store created with 5 documents.
 
 Query: Which course is about RAG?
 Top retrieved document: ['This is the Fundamentals of RAG course.']
+```
+
+### LangChain Augmented Query Example
+```
+[INFO] Custom RAG Prompt Template:
+ input_variables=['context', 'question']
+
+[INFO] Retrieved Context:
+ AI continues to evolve rapidly, with advancements in deep learning and generative models. 
+Experts predict increased integration of AI in everyday life and industry.
+
+[INFO] Augmented Query (Final Prompt to LLM):
+ Use the following pieces of context to answer the question at the end.
+If you don't know the answer, just say that you don't know, don't try to make up an answer.
+Use three sentences maximum and keep the answer as concise as possible.
+Always say 'thanks for asking!' at the end of the answer.
+
+AI continues to evolve rapidly, with advancements in deep learning and generative models. 
+Experts predict increased integration of AI in everyday life and industry.
+Question: What is the future of AI?
+
+Helpful Answer:
 ```
 
 ## Troubleshooting
