@@ -15,6 +15,7 @@ COPY "01-embeddings-tf-idf.py" ./
 COPY "02-openai-embedding.py" ./
 COPY "03-embeddings-langchain-chromadb.py" ./
 COPY "04-langchain-augmented-query.py" ./
+COPY "05-langchain-generation.py" ./
 
 # No default command; specify which script to run via CMD or docker run
 # Example:
@@ -22,3 +23,4 @@ COPY "04-langchain-augmented-query.py" ./
 #   docker run --rm -e OPENAI_API_KEY=your-key rag-examples python 02-openai-embedding.py
 #   docker run --rm -e OPENAI_API_KEY=your-key rag-examples python 03-embeddings-langchain-chromadb.py
 #   docker run --rm rag-examples python 04-langchain-augmented-query.py
+#   docker run --rm -e OPENAI_API_KEY=your-key rag-examples python 05-langchain-generation.py

@@ -1,9 +1,8 @@
-scikit-learn
-pandas
-numpy
-openai
-langchain
-langchain-core
-langchain-openai
-langchain-community
-chromadb
+openai>=1.0.0
+langchain>=0.1.0
+langchain-core>=0.1.0
+langchain-openai>=0.1.0
+# If you use other scripts in this repo, you may need:
+langchain-community>=0.0.30
+chromadb>=0.4.22
+scikit-learn, pandas, numpy (for 01-embeddings-tf-idf.py)

@@ -11,9 +11,39 @@ Both examples show how to build a simple vector database and perform document re
 - `02-openai-embedding.py`: OpenAI Embedding API-based retrieval demo (requires OpenAI API key).
 - `03-embeddings-langchain-chromadb.py`: LangChain + OpenAI Embeddings + ChromaDB vector store demo (requires OpenAI API key).
 - `04-langchain-augmented-query.py`: LangChain prompt augmentation demo (shows how to build a RAG prompt and augment a query; no API key needed).
+- `05-langchain-generation.py`: **LangChain RAG pipeline with OpenAI LLM generation**. Shows how to chain a retriever, prompt, and LLM for end-to-end Retrieval-Augmented Generation. Fully commented for learning. **Requires OpenAI API key.**
 - `requirements.txt`: Python dependencies for all examples.
 - `Dockerfile`: Containerizes all scripts for easy, reproducible runs.
 - `.gitignore`: Standard Python, Docker, and editor ignores.
+
+---
+
+## 05-langchain-generation.py: RAG Pipeline with LLM Generation
+
+This script demonstrates a simple, fully-commented Retrieval-Augmented Generation (RAG) pipeline using LangChain and OpenAI's GPT model. It chains together a retriever, a custom prompt, and an LLM for a complete RAG workflow.
+
+**Requirements:**
+- Python 3.8+
+- Dependencies in `requirements.txt`
+- **OpenAI API key** (set the `OPENAI_API_KEY` environment variable)
+
+**Usage:**
+```sh
+# Set your OpenAI API key (Linux/macOS)
+export OPENAI_API_KEY=sk-...
+# Or on Windows (Powershell)
+$env:OPENAI_API_KEY="sk-..."
+
+python 05-langchain-generation.py
+```
+
+**Docker:**
+```sh
+docker build -t rag-examples .
+docker run --rm -e OPENAI_API_KEY=sk-... rag-examples python 05-langchain-generation.py
+```
+
+---
 
 ## Getting Started
 
@@ -87,6 +117,11 @@ docker run --rm -e OPENAI_API_KEY=your-key-here rag-examples python 03-embedding
 #### Run the LangChain Augmented Query example in Docker
 ```sh
 docker run --rm rag-examples python 04-langchain-augmented-query.py
+```
+
+#### Run the LangChain Generation example in Docker
+```sh
+docker run --rm -e OPENAI_API_KEY=your-key-here rag-examples python 05-langchain-generation.py
 ```
 
 **Note:** If you see an `insufficient_quota` or `invalid_api_key` error, check your OpenAI account status and quota.
