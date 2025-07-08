@@ -161,6 +161,37 @@ Open your browser to [http://localhost:8501](http://localhost:8501) to view the 
 
 ---
 
+## 07-langchain-streamlit-rag-qa.py: Streamlit RAG QA App
+
+This app lets you upload a `.txt` file and ask questions about its content using Retrieval-Augmented Generation (RAG) with LangChain, OpenAI, and ChromaDB. The app splits your document, creates embeddings, and answers your questions using GPT-4o.
+
+**Requirements:**
+- Python 3.8+
+- `streamlit`, `langchain`, `langchain-openai`, `chromadb`, `openai` (see `requirements.txt`)
+- **OpenAI API key** (for LLM and embeddings)
+
+**Usage (local):**
+```sh
+pip install -r requirements.txt
+streamlit run 07-langchain-streamlit-rag-qa.py
+```
+
+**Docker:**
+```sh
+docker build -t rag-examples .
+docker run --rm -p 8501:8501 rag-examples streamlit run 07-langchain-streamlit-rag-qa.py
+```
+
+**Sample workflow:**
+1. Upload a `.txt` file (e.g., an article or notes).
+2. Enter your OpenAI API key (required for GPT-4o and embeddings).
+3. Ask a question about the document.
+4. View the concise, AI-generated answer!
+
+Open your browser to [http://localhost:8501](http://localhost:8501) to use the app.
+
+---
+
 ## Getting Started
 
 ### Prerequisites

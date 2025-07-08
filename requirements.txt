@@ -5,7 +5,15 @@ langchain-openai>=0.1.0
 langchain-community>=0.0.30
 chromadb>=0.4.22
 streamlit>=1.33.0
-
+langchain>=0.1.0
+langchain-core>=0.1.0
+langchain-openai>=0.1.0
+langchain-community>=0.0.30
+chromadb>=0.4.22
+openai>=1.0.0
+# If you see errors for Chroma/embeddings, also add:
+pydantic>=1.10.0
+tqdm>=4.65.0
 # The following are only needed for 01-embeddings-tf-idf.py:
 scikit-learn
 pandas
