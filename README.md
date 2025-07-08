@@ -1,10 +1,17 @@
-# RAG with LangChain: In-Depth Architecture Examples
+# Retrieval-Augmented Generation (RAG) with LangChain: Hands-On Examples
 
-This project demonstrates two practical approaches for Retrieval-Augmented Generation (RAG) using Python:
-- **TF-IDF Embedding + NearestNeighbors**: Classic local vectorization and retrieval.
-- **OpenAI Embedding API + NearestNeighbors**: Modern semantic search using OpenAI's embedding models.
+Welcome to a practical, educational repository for learning and experimenting with Retrieval-Augmented Generation (RAG) architectures using Python and [LangChain](https://python.langchain.com/). This project includes:
+- Classic and modern retrieval pipelines
+- End-to-end RAG with OpenAI LLMs
+- A beginner-friendly Streamlit demo
+- Docker support for easy reproducibility
 
-Both examples show how to build a simple vector database and perform document retrieval, laying the foundation for more advanced RAG systems or LangChain integrations.
+## Project Goals
+- **Learn** about RAG architectures, vector search, and prompt engineering
+- **Experiment** with code for embeddings, retrieval, and LLM integration
+- **Prototype** your own RAG pipelines and web demos
+
+---
 
 ## Project Structure
 - `01-embeddings-tf-idf.py`: TF-IDF vectorization and retrieval demo (no API key needed).
@@ -12,9 +19,94 @@ Both examples show how to build a simple vector database and perform document re
 - `03-embeddings-langchain-chromadb.py`: LangChain + OpenAI Embeddings + ChromaDB vector store demo (requires OpenAI API key).
 - `04-langchain-augmented-query.py`: LangChain prompt augmentation demo (shows how to build a RAG prompt and augment a query; no API key needed).
 - `05-langchain-generation.py`: **LangChain RAG pipeline with OpenAI LLM generation**. Shows how to chain a retriever, prompt, and LLM for end-to-end Retrieval-Augmented Generation. Fully commented for learning. **Requires OpenAI API key.**
+- `06-streamlit-hello.py`: **Streamlit web demo**. A simple, interactive Streamlit app to demonstrate Python web UIs.
 - `requirements.txt`: Python dependencies for all examples.
 - `Dockerfile`: Containerizes all scripts for easy, reproducible runs.
 - `.gitignore`: Standard Python, Docker, and editor ignores.
+
+---
+
+## Features
+- Local and cloud vector search (TF-IDF, OpenAI, ChromaDB)
+- Prompt engineering and LLM generation
+- Educational comments and clear code for each step
+- Streamlit UI demo for beginners
+- Docker support for easy setup and reproducibility
+
+---
+
+## Setup
+
+### 1. Clone the repository
+```sh
+git clone https://github.com/pritamnikam/rag-langchain-architecture.git
+cd rag-langchain-architecture
+```
+
+### 2. Install dependencies
+```sh
+pip install -r requirements.txt
+```
+
+### 3. (Optional) Set up your OpenAI API key
+Some scripts require an OpenAI API key. Get yours at https://platform.openai.com/account/api-keys
+
+- **Linux/macOS:**
+  ```sh
+  export OPENAI_API_KEY=sk-...
+  ```
+- **Windows (Powershell):**
+  ```sh
+  $env:OPENAI_API_KEY="sk-..."
+  ```
+
+### 4. (Optional) Build Docker image
+```sh
+docker build -t rag-examples .
+```
+
+---
+
+## Usage
+
+### Run scripts locally
+- **TF-IDF Example:**
+  ```sh
+  python 01-embeddings-tf-idf.py
+  ```
+- **OpenAI Embedding Example:**
+  ```sh
+  python 02-openai-embedding.py
+  ```
+- **ChromaDB + LangChain Example:**
+  ```sh
+  python 03-embeddings-langchain-chromadb.py
+  ```
+- **LangChain Prompt Augmentation:**
+  ```sh
+  python 04-langchain-augmented-query.py
+  ```
+- **LangChain RAG Generation:**
+  ```sh
+  python 05-langchain-generation.py
+  ```
+- **Streamlit Demo:**
+  ```sh
+  streamlit run 06-streamlit-hello.py
+  ```
+
+### Run scripts in Docker
+- **General pattern:**
+  ```sh
+  docker run --rm -e OPENAI_API_KEY=sk-... rag-examples python <script.py>
+  ```
+- **Streamlit app:**
+  ```sh
+  docker run --rm -p 8501:8501 rag-examples streamlit run 06-streamlit-hello.py
+  # Then open http://localhost:8501
+  ```
+
+---
 
 ---
 
@@ -42,6 +134,30 @@ python 05-langchain-generation.py
 docker build -t rag-examples .
 docker run --rm -e OPENAI_API_KEY=sk-... rag-examples python 05-langchain-generation.py
 ```
+
+---
+
+## 06-streamlit-hello.py: Interactive Streamlit Demo
+
+This script is a simple, interactive Streamlit web app to demonstrate how easy it is to build Python-powered web interfaces. It includes user input, sidebar info, and dynamic output, all with clear comments for learning.
+
+**Requirements:**
+- Python 3.8+
+- `streamlit` (see `requirements.txt`)
+
+**Usage (local):**
+```sh
+pip install -r requirements.txt
+streamlit run 06-streamlit-hello.py
+```
+
+**Docker:**
+```sh
+docker build -t rag-examples .
+docker run --rm -p 8501:8501 rag-examples streamlit run 06-streamlit-hello.py
+```
+
+Open your browser to [http://localhost:8501](http://localhost:8501) to view the app.
 
 ---
 
