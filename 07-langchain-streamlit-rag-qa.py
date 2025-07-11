@@ -8,8 +8,10 @@ from langchain_core.output_parsers import StrOutputParser
 from langchain_openai import ChatOpenAI
 
 # --- Streamlit UI Setup ---
-# Display a logo or banner (replace with your own image if desired)
-st.image('Educative.png', use_column_width=True)
+# Display a logo or banner if the image exists (prevents errors if missing)
+import os
+if os.path.exists('Educative.png'):
+    st.image('Educative.png', use_column_width=True)
 
 # Add a title and description
 st.title(' LangChain RAG QA Demo')
@@ -66,7 +68,7 @@ query_text = st.text_input('Enter your question:', placeholder = 'Please provide
 
 # Form input and query
 result = None
-with st.form('myform', clear_on_submit=False, border=False):
+with st.form('myform', clear_on_submit=False):
     openai_api_key = st.text_input('OpenAI API Key', type='password', disabled=not (uploaded_file and query_text))
     submitted = st.form_submit_button('Submit', disabled=not(uploaded_file and query_text))
     if submitted and openai_api_key.startswith('sk-'):

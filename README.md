@@ -20,6 +20,8 @@ Welcome to a practical, educational repository for learning and experimenting wi
 - `04-langchain-augmented-query.py`: LangChain prompt augmentation demo (shows how to build a RAG prompt and augment a query; no API key needed).
 - `05-langchain-generation.py`: **LangChain RAG pipeline with OpenAI LLM generation**. Shows how to chain a retriever, prompt, and LLM for end-to-end Retrieval-Augmented Generation. Fully commented for learning. **Requires OpenAI API key.**
 - `06-streamlit-hello.py`: **Streamlit web demo**. A simple, interactive Streamlit app to demonstrate Python web UIs.
+- `08-langchain-qdrant-vector-store-rag-qa.py`: **Minimal RAG pipeline using Qdrant vector store and OpenAI LLMs**. Loads a text file, splits it, embeds with OpenAI, stores in Qdrant (in-memory), and runs a RAG QA chain. **Requires OpenAI API key.**
+- `09-langchain-rag-pdf-document.py`: **Streamlit RAG QA app for PDF/TXT documents**. Upload a PDF or TXT, ask questions, and get answers using LangChain, Chroma, and OpenAI. **Requires OpenAI API key and PyMuPDF.**
 - `requirements.txt`: Python dependencies for all examples.
 - `Dockerfile`: Containerizes all scripts for easy, reproducible runs.
 - `.gitignore`: Standard Python, Docker, and editor ignores.
@@ -90,9 +92,17 @@ docker build -t rag-examples .
   ```sh
   python 05-langchain-generation.py
   ```
+- **Qdrant RAG QA Example:**
+  ```sh
+  python 08-langchain-qdrant-vector-store-rag-qa.py
+  ```
 - **Streamlit Demo:**
   ```sh
   streamlit run 06-streamlit-hello.py
+  ```
+- **PDF RAG QA Streamlit App:**
+  ```sh
+  streamlit run 09-langchain-rag-pdf-document.py
   ```
 
 ### Run scripts in Docker
@@ -100,13 +110,74 @@ docker build -t rag-examples .
   ```sh
   docker run --rm -e OPENAI_API_KEY=sk-... rag-examples python <script.py>
   ```
+- **Qdrant RAG QA Example:**
+  ```sh
+  docker run --rm -e OPENAI_API_KEY=sk-... rag-examples python 08-langchain-qdrant-vector-store-rag-qa.py
+  ```
 - **Streamlit app:**
   ```sh
   docker run --rm -p 8501:8501 rag-examples streamlit run 06-streamlit-hello.py
   # Then open http://localhost:8501
   ```
+- **PDF RAG QA Streamlit App:**
+  ```sh
+  docker run --rm -p 8501:8501 rag-examples streamlit run 09-langchain-rag-pdf-document.py
+  # Then open http://localhost:8501
+  ```
 
 ---
+
+---
+
+## 08-langchain-qdrant-vector-store-rag-qa.py: Minimal RAG with Qdrant Vector Store
+
+This script demonstrates a minimal Retrieval-Augmented Generation (RAG) pipeline using LangChain, Qdrant (in-memory), and OpenAI LLMs. Loads a text file, splits it into chunks, embeds with OpenAI, stores in Qdrant, and runs a RAG QA chain.
+
+**Requirements:**
+- Python 3.8+
+- Dependencies in `requirements.txt`
+- **OpenAI API key** (set the `OPENAI_API_KEY` environment variable)
+- `Lakers.txt` (or another text file in the same directory)
+
+**Usage:**
+```sh
+# Set your OpenAI API key (Linux/macOS)
+export OPENAI_API_KEY=sk-...
+# Or on Windows (Powershell)
+$env:OPENAI_API_KEY="sk-..."
+
+python 08-langchain-qdrant-vector-store-rag-qa.py
+```
+
+**Docker:**
+```sh
+# Place Lakers.txt in the same directory or mount it via -v
+# Set your OpenAI API key
+export OPENAI_API_KEY=sk-...
+docker run --rm -e OPENAI_API_KEY=sk-... -v $PWD/Lakers.txt:/app/Lakers.txt rag-examples python 08-langchain-qdrant-vector-store-rag-qa.py
+```
+
+---
+
+## 09-langchain-rag-pdf-document.py: Streamlit RAG QA for PDF/TXT Documents
+
+This Streamlit app lets you upload a PDF or TXT, ask questions, and get concise answers using LangChain, Chroma, and OpenAI LLMs.
+
+**Requirements:**
+- Python 3.8+
+- Dependencies in `requirements.txt` **including `pymupdf` for PDF support**
+- **OpenAI API key**
+
+**Usage:**
+```sh
+streamlit run 09-langchain-rag-pdf-document.py
+```
+Open your browser to [http://localhost:8501](http://localhost:8501)
+
+**Docker:**
+```sh
+docker run --rm -p 8501:8501 rag-examples streamlit run 09-langchain-rag-pdf-document.py
+```
 
 ---
 
