@@ -20,6 +20,7 @@ COPY "06-streamlit-hello.py" ./
 COPY "07-langchain-streamlit-rag-qa.py" ./
 COPY "08-langchain-qdrant-vector-store-rag-qa.py" ./
 COPY "09-langchain-rag-pdf-document.py" ./
+COPY "10-langchain-rag-multiple-files-qa.py" ./
 
 # No default command; specify which script to run via CMD or docker run
 # Example:
@@ -36,5 +37,7 @@ COPY "09-langchain-rag-pdf-document.py" ./
 #   docker run --rm -e OPENAI_API_KEY=your-key rag-examples python 08-langchain-qdrant-vector-store-rag-qa.py
 #   # To run the PDF RAG Streamlit app (requires PyMuPDF):
 #   docker run --rm -p 8501:8501 rag-examples streamlit run 09-langchain-rag-pdf-document.py
+#   # To run the Multiple Files RAG Streamlit app (requires PyMuPDF):
+#   docker run --rm -p 8501:8501 rag-examples streamlit run 10-langchain-rag-multiple-files-qa.py
 #
-# Note: PyMuPDF is required for PDF support in 09-langchain-rag-pdf-document.py
+# Note: PyMuPDF is required for PDF support in 09-langchain-rag-pdf-document.py and 10-langchain-rag-multiple-files-qa.py

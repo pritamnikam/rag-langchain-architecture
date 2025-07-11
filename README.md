@@ -22,6 +22,7 @@ Welcome to a practical, educational repository for learning and experimenting wi
 - `06-streamlit-hello.py`: **Streamlit web demo**. A simple, interactive Streamlit app to demonstrate Python web UIs.
 - `08-langchain-qdrant-vector-store-rag-qa.py`: **Minimal RAG pipeline using Qdrant vector store and OpenAI LLMs**. Loads a text file, splits it, embeds with OpenAI, stores in Qdrant (in-memory), and runs a RAG QA chain. **Requires OpenAI API key.**
 - `09-langchain-rag-pdf-document.py`: **Streamlit RAG QA app for PDF/TXT documents**. Upload a PDF or TXT, ask questions, and get answers using LangChain, Chroma, and OpenAI. **Requires OpenAI API key and PyMuPDF.**
+- `10-langchain-rag-multiple-files-qa.py`: **Streamlit RAG QA app for multiple PDF/TXT files**. Upload multiple PDFs or TXTs, ask questions, and get answers using LangChain, Chroma, and OpenAI. **Requires OpenAI API key and PyMuPDF.**
 - `requirements.txt`: Python dependencies for all examples.
 - `Dockerfile`: Containerizes all scripts for easy, reproducible runs.
 - `.gitignore`: Standard Python, Docker, and editor ignores.
@@ -104,6 +105,10 @@ docker build -t rag-examples .
   ```sh
   streamlit run 09-langchain-rag-pdf-document.py
   ```
+- **Multiple Files RAG QA Streamlit App:**
+  ```sh
+  streamlit run 10-langchain-rag-multiple-files-qa.py
+  ```
 
 ### Run scripts in Docker
 - **General pattern:**
@@ -122,6 +127,11 @@ docker build -t rag-examples .
 - **PDF RAG QA Streamlit App:**
   ```sh
   docker run --rm -p 8501:8501 rag-examples streamlit run 09-langchain-rag-pdf-document.py
+  # Then open http://localhost:8501
+  ```
+- **Multiple Files RAG QA Streamlit App:**
+  ```sh
+  docker run --rm -p 8501:8501 rag-examples streamlit run 10-langchain-rag-multiple-files-qa.py
   # Then open http://localhost:8501
   ```
 
@@ -155,6 +165,28 @@ python 08-langchain-qdrant-vector-store-rag-qa.py
 # Set your OpenAI API key
 export OPENAI_API_KEY=sk-...
 docker run --rm -e OPENAI_API_KEY=sk-... -v $PWD/Lakers.txt:/app/Lakers.txt rag-examples python 08-langchain-qdrant-vector-store-rag-qa.py
+```
+
+---
+
+## 10-langchain-rag-multiple-files-qa.py: Streamlit RAG QA for Multiple PDF/TXT Documents
+
+This Streamlit app lets you upload multiple PDF and/or TXT files, ask questions, and get concise answers using LangChain, Chroma, and OpenAI LLMs. All files are combined and chunked for retrieval-augmented QA.
+
+**Requirements:**
+- Python 3.8+
+- Dependencies in `requirements.txt` **including `pymupdf` for PDF support**
+- **OpenAI API key**
+
+**Usage:**
+```sh
+streamlit run 10-langchain-rag-multiple-files-qa.py
+```
+Open your browser to [http://localhost:8501](http://localhost:8501)
+
+**Docker:**
+```sh
+docker run --rm -p 8501:8501 rag-examples streamlit run 10-langchain-rag-multiple-files-qa.py
 ```
 
 ---

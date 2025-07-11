@@ -6,10 +6,10 @@ langchain-openai>=0.1.0
 langchain-community>=0.0.30
 chromadb>=0.4.22
 
-# For Streamlit web apps (e.g., 06, 07, 09)
+# For Streamlit web apps (e.g., 06, 07, 09, 10)
 streamlit>=1.33.0
 
-# For PDF support in 09-langchain-rag-pdf-document.py
+# For PDF support in 09-langchain-rag-pdf-document.py and 10-langchain-rag-multiple-files-qa.py
 pymupdf>=1.23.0  # Provides the 'fitz' module
 
 # If you see errors for Chroma/embeddings, also add:
